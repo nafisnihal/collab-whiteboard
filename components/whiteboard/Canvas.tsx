@@ -12,7 +12,7 @@ const Canvas = () => {
   const [isDrawing, setIsDrawing] = useState(false); // Tracks if drawing is in progress.
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null); // The 2D drawing context.
   const [tool, setTool] = useState<"pen" | "eraser">("pen"); // Tracks current tool: pen or eraser.
-  const [color, setColor] = useState("black"); // Tracks the color selected for drawing.
+  const [color, setColor] = useState<string>("white"); // Tracks the color selected for drawing.
 
   // This effect initializes the canvas context when the component mounts.
   useEffect(() => {
@@ -103,7 +103,12 @@ const Canvas = () => {
   return (
     <div className="relative">
       {/* Render the Toolbar component that controls the drawing tool and color */}
-      <Toolbar currentTool={tool} setTool={setTool} setColor={setColor} />
+      <Toolbar
+        currentTool={tool}
+        setTool={setTool}
+        color={color}
+        setColor={setColor}
+      />
 
       {/* The canvas element where the drawing happens */}
       <canvas
